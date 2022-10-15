@@ -12,6 +12,7 @@ namespace program
         {
             public static string[] lines = new string[100];
             public static int linesCount = lines.Count();
+            
         }
 
         class file
@@ -25,7 +26,6 @@ namespace program
                 else
                 {
                     File.Create("data.txt");
-                    Global.lines = File.ReadAllLines("data.txt");
                 }
 
             }
@@ -43,19 +43,23 @@ namespace program
                 Console.WriteLine("3. Edit memento");
                 Console.WriteLine("4. Remove memento");
                 Console.WriteLine("5. Save and exit");
+
                 int menuSelection = Convert.ToInt32(Console.ReadLine());
                 switch (menuSelection)
                 {
                     case 1:
                         foreach (string ln in Global.lines)
                         {
-                            Console.WriteLine(ln);
+                            if(ln != null)
+                                Console.WriteLine(ln);
                             i++;
                         }
                         break;
                     case 2:
-                        string stringToWrite = Console.ReadLine();
-                        Global.lines[i-1] = stringToWrite;
+                        Console.WriteLine(Global.lines.Length);
+                        Array.Resize(ref Global.lines, 100);
+                        Console.WriteLine(i + 1);
+                        Global.lines[i + 1] = Console.ReadLine();
                         break;
                     case 3:
                         Console.Write("Which memento to edit: ");
@@ -88,14 +92,13 @@ namespace program
                                 }
                                 Global.lines[i] = Global.lines[i];
                             }
+                            i++;
 
                         }
                         break;
                     case 5:
-                        for (i = 0; i < Global.lines.Count(); i++)
-                        {
                             File.WriteAllLines("data.txt", Global.lines);
-                        }
+                        showMenu = false;
                         break;
                 }
             }

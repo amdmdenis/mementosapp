@@ -62,14 +62,14 @@ namespace program
                         Global.lines[i + 1] = Console.ReadLine();
                         break;
                     case 3:
-                        Console.Write("Which memento to edit: ");
+                        Console.Write("Which memento to edit(0-100 0 meaning first line): ");
                         int mementoLineToEdit = Convert.ToInt32(Console.ReadLine());
                         Console.Write("Edit with: ");
                         string mementoEdited = Console.ReadLine();
                         Global.lines[mementoLineToEdit] = mementoEdited;
                         break;
                     case 4:
-                        Console.Write("Which memento to remove: ");
+                        Console.Write("Which memento to remove(0-100 0 meaning first line): ");
                         int mementoLineToRemove = Convert.ToInt32(Console.ReadLine());
                         Global.lines[mementoLineToRemove] = null;
                         i = 0;
